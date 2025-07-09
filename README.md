@@ -245,12 +245,4 @@ Premium Shopping Website/
 
 Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
 
-## License
 
-[MIT](LICENSE) (or specify your license)
-
----
-
-**Note:**  
-- Update the repository URL and license section as per your project.
-- Add any additional setup steps (like environment variables) if your codebase requires them.
