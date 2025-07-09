@@ -1,75 +1,256 @@
-# Online Shopping Application
+# Premium Shopping Website
 
-This application was built using [Node.js 14](https://nodejs.org/en/), [Express](https://expressjs.com/), [EJS Template Engine](https://ejs.co/), [Stripe](https://stripe.com/fr), [PDFKit](https://pdfkit.org/), [Mongoose ORM](https://mongoosejs.com/) and [MongoDB](https://www.mongodb.com/) for persistence. It consists on an online shopping application.
+A full-featured e-commerce web application built with Node.js, Express, and EJS templating. This project provides a complete online shopping experience, including user authentication, product management, cart, and order processing.
 
-**The application was deployed on AWS Beanstalk, to access it, click [here](http://nodeshopping-env.eba-czedjv9y.eu-west-2.elasticbeanstalk.com/).**
+## Features
 
-## Running Application Process on your computer
+- **User Authentication**: Signup, login, password reset, and session management.
+- **Product Management**: Admins can add, edit, and delete products.
+- **Shopping Cart**: Users can add products to their cart and manage quantities.
+- **Order Processing**: Users can place orders and view their order history.
+- **Admin Panel**: Separate views for admins to manage products.
+- **Error Handling**: Custom 404 and 500 error pages.
+- **Responsive UI**: Styled with CSS for a modern shopping experience.
 
-1. Download the application by Clicking [this link](https://github.com/gaetanBloch/nodejs-shopping/archive/master.zip)
-2. Unzip the application
-3. Download and Install [node.js](https://nodejs.org/en/download/) 
-4. Open a terminal
-5. Move to the root of the application
-6. Run `npm install`
-7. Run `npm start`
-8. Visit the website http://localhost:3000/ on your favourite browser
+## Project Structure
 
-## Application
+```
+Premium Shopping Website/
+│
+├── app.js                  # Main application entry point
+├── controllers/            # Route controllers for business logic
+│   ├── admin.js
+│   ├── auth.js
+│   ├── error.js
+│   └── shop.js
+├── middleware/
+│   └── is-auth.js          # Authentication middleware
+├── models/                 # Mongoose models for MongoDB
+│   ├── order.js
+│   ├── product.js
+│   └── user.js
+├── public/                 # Static assets (CSS, JS)
+│   ├── css/
+│   └── js/
+├── routes/                 # Express route definitions
+│   ├── admin.js
+│   ├── auth.js
+│   └── shop.js
+├── utils.js                # Utility functions
+├── views/                  # EJS templates for server-side rendering
+│   ├── 404.ejs
+│   ├── 500.ejs
+│   ├── admin/
+│   ├── auth/
+│   ├── includes/
+│   └── shop/
+├── package.json
+├── package-lock.json
+├── Procfile                # For deployment (e.g., Heroku)
+└── README.md
+```
 
-### Signup
+## Getting Started
 
-![Signup](https://i.imgur.com/ugZY2Dr.png)
+### Prerequisites
 
-### Login
+- [Node.js](https://nodejs.org/) (v14 or higher recommended)
+- [MongoDB](https://www.mongodb.com/) (local or cloud instance)
 
-![Login](https://i.imgur.com/OWAsmFf.png)
+### Installation
 
-### Reset Password
+1. **Clone the repository:**
+   ```
+   git clone <repository-url>
+   cd Premium\ Shopping\ Website
+   ```
 
-![Reset Password](https://i.imgur.com/GIJbq4B.png)
+2. **Install dependencies:**
+   ```
+   npm install
+   ```
 
-### Shopping List
+3. **Set up environment variables:**
+   - Create a `.env` file (if required) for sensitive data like database URI, session secrets, etc.
 
-![Shopping List](https://i.imgur.com/ygCs5Iq.png)
+4. **Start MongoDB** (if running locally):
+   ```
+   mongod
+   ```
 
-### Shopping List Pagination
+5. **Run the application:**
+   ```
+   node app.js
+   ```
+   Or, for development with auto-reload:
+   ```
+   npm install -g nodemon
+   nodemon app.js
+   ```
 
-![Shopping List Pagination](https://i.imgur.com/vVH8HXW.png)
+6. **Visit in your browser:**
+   ```
+   http://localhost:3000
+   ```
 
-### Responsive Shopping List
+## Usage
 
-![Responsive1](https://i.imgur.com/irFtMIB.png)
-![Responsive2](https://i.imgur.com/P7FploU.png)
+- **User:** Browse products, add to cart, checkout, and view orders.
+- **Admin:** Login as admin to add/edit/delete products.
+- **Authentication:** Signup, login, and password reset flows are available.
 
-### Add Product
+## Folder Details
 
-![Add Product](https://i.imgur.com/dyHFrnJ.png)
+- **controllers/**: Handles the logic for each route (admin, auth, shop, error).
+- **middleware/**: Contains authentication middleware to protect routes.
+- **models/**: Mongoose schemas for products, users, and orders.
+- **routes/**: Express route definitions for admin, auth, and shop.
+- **public/**: Static files (CSS for styling, JS for client-side scripts).
+- **views/**: EJS templates for rendering HTML pages.
 
-### Shopping List Admin
+## Deployment
 
-![Shoppîng List Admin](https://i.imgur.com/N4vRGph.png)
+- The included `Procfile` allows easy deployment to platforms like Heroku.
+- Ensure environment variables are set for production (e.g., database URI, session secrets).
 
-### Edit Product
+## Contributing
 
-![Edit Product](https://i.imgur.com/XTbXF2E.png)
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
 
-### Cart Summary
+## License
 
-![Cart](https://i.imgur.com/TXY9vq7.png)
+[MIT](LICENSE) (or specify your license)
 
-### Cart Checkout
+---
 
-![Cart Checkout](https://i.imgur.com/qU3vKw2.png)
+**Note:**  
+- Update the repository URL and license section as per your project.
+- Add any additional setup steps (like environment variables) if your codebase requires them.
+# Premium Shopping Website
 
-### Order Payment
+A full-featured e-commerce web application built with Node.js, Express, and EJS templating. This project provides a complete online shopping experience, including user authentication, product management, cart, and order processing.
 
-![Order Payment](https://imgur.com/kRL5YU1.png)
+## Features
 
-### Passed Orders Summary
+- **User Authentication**: Signup, login, password reset, and session management.
+- **Product Management**: Admins can add, edit, and delete products.
+- **Shopping Cart**: Users can add products to their cart and manage quantities.
+- **Order Processing**: Users can place orders and view their order history.
+- **Admin Panel**: Separate views for admins to manage products.
+- **Error Handling**: Custom 404 and 500 error pages.
+- **Responsive UI**: Styled with CSS for a modern shopping experience.
 
-![Orders Summary](https://imgur.com/9VJR4Xc.png)
+## Project Structure
 
-### Order invoice
+```
+Premium Shopping Website/
+│
+├── app.js                  # Main application entry point
+├── controllers/            # Route controllers for business logic
+│   ├── admin.js
+│   ├── auth.js
+│   ├── error.js
+│   └── shop.js
+├── middleware/
+│   └── is-auth.js          # Authentication middleware
+├── models/                 # Mongoose models for MongoDB
+│   ├── order.js
+│   ├── product.js
+│   └── user.js
+├── public/                 # Static assets (CSS, JS)
+│   ├── css/
+│   └── js/
+├── routes/                 # Express route definitions
+│   ├── admin.js
+│   ├── auth.js
+│   └── shop.js
+├── utils.js                # Utility functions
+├── views/                  # EJS templates for server-side rendering
+│   ├── 404.ejs
+│   ├── 500.ejs
+│   ├── admin/
+│   ├── auth/
+│   ├── includes/
+│   └── shop/
+├── package.json
+├── package-lock.json
+├── Procfile                # For deployment (e.g., Heroku)
+└── README.md
+```
 
-![Order invoice](https://imgur.com/b8pqelC.png)
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v14 or higher recommended)
+- [MongoDB](https://www.mongodb.com/) (local or cloud instance)
+
+### Installation
+
+1. **Clone the repository:**
+   ```
+   git clone <repository-url>
+   cd Premium\ Shopping\ Website
+   ```
+
+2. **Install dependencies:**
+   ```
+   npm install
+   ```
+
+3. **Set up environment variables:**
+   - Create a `.env` file (if required) for sensitive data like database URI, session secrets, etc.
+
+4. **Start MongoDB** (if running locally):
+   ```
+   mongod
+   ```
+
+5. **Run the application:**
+   ```
+   node app.js
+   ```
+   Or, for development with auto-reload:
+   ```
+   npm install -g nodemon
+   nodemon app.js
+   ```
+
+6. **Visit in your browser:**
+   ```
+   http://localhost:3000
+   ```
+
+## Usage
+
+- **User:** Browse products, add to cart, checkout, and view orders.
+- **Admin:** Login as admin to add/edit/delete products.
+- **Authentication:** Signup, login, and password reset flows are available.
+
+## Folder Details
+
+- **controllers/**: Handles the logic for each route (admin, auth, shop, error).
+- **middleware/**: Contains authentication middleware to protect routes.
+- **models/**: Mongoose schemas for products, users, and orders.
+- **routes/**: Express route definitions for admin, auth, and shop.
+- **public/**: Static files (CSS for styling, JS for client-side scripts).
+- **views/**: EJS templates for rendering HTML pages.
+
+## Deployment
+
+- The included `Procfile` allows easy deployment to platforms like Heroku.
+- Ensure environment variables are set for production (e.g., database URI, session secrets).
+
+## Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+[MIT](LICENSE) (or specify your license)
+
+---
+
+**Note:**  
+- Update the repository URL and license section as per your project.
+- Add any additional setup steps (like environment variables) if your codebase requires them.
