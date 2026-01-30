@@ -1,5 +1,32 @@
-.idea
-.vscode
-node_modules
-data
+# Environment variables
+.env
+.env.local
+.env.production
+.env*.local
+
+# Vercel
+.vercel
+
+# Dependencies
+node_modules/
+
+# Logs
+*.log
 access.log
+npm-debug.log*
+
+# Data files
+data/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp files
+uploads/
+temp/
+tmp/

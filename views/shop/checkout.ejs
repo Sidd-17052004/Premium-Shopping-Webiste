@@ -6,21 +6,28 @@
 <%- include('../includes/navigation.ejs') %>
 
 <main>
+  <h1 style="margin-bottom: 2rem; text-align: center; color: #333;">Order Summary</h1>
   <ul class="cart__item-list">
     <% products.forEach((product) => { %>
       <li class="cart__item">
-        <h1><%= product.productId.title %></h1>
-        <h2>Quantity: <%= product.quantity %></h2>
+        <div>
+          <h2 style="color: #333;"><%= product.productId.title %></h2>
+          <p style="color: #666;">Quantity: <%= product.quantity %></p>
+        </div>
+        <div style="color: #ff6b6b; font-weight: bold;">
+          $<%= (product.productId.price * product.quantity).toFixed(2) %>
+        </div>
       </li>
     <% }) %>
   </ul>
-  <h2 class="centered">Total Price: $<%= totalPrice %></h2>
-  <div class="centered">
-    <button class="btn" id="order-btn">ORDER</button>
+  
+  <div style="background: white; padding: 2rem; border-radius: 12px; max-width: 600px; margin: 2rem auto; text-align: center;">
+    <div style="font-size: 1.5rem; color: #666; margin-bottom: 0.5rem;">Total Amount</div>
+    <div style="font-size: 2.5rem; font-weight: 700; color: #ff6b6b; margin-bottom: 2rem;">$<%= totalPrice %></div>
+    <button class="btn btn-primary" id="order-btn" style="width: 100%; padding: 1rem;">Proceed to Payment</button>
     <script src="https://js.stripe.com/v3/"></script>
     <script>
-      const stripe = Stripe('pk_test_51GsE8QKgkkR5AU1871NLWPSF3PtXLrlZpwoocM' +
-        'iVRLdvcoLOYHrlPJz5PqfhfnEhiUMtHUcbfBhM4I6kTn6CWPct00vKmVYTXC');
+      const stripe = Stripe('<%= stripePublicKey %>');
       const orderButton = document.getElementById('order-btn');
       orderButton.addEventListener('click', () => {
         stripe.redirectToCheckout({ sessionId: '<%= sessionId %>'})
@@ -28,7 +35,10 @@
             // If `redirectToCheckout` fails due to a browser or network
             // error, display the localized error message to your customer
             // using `result.error.message`.
-            console.log(result.error.message);
+            if (result.error) {
+              console.log(result.error.message);
+              alert('Payment failed: ' + result.error.message);
+            }
           });
       });
     </script>

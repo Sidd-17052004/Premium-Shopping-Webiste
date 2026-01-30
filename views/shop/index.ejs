@@ -6,33 +6,74 @@
 <%- include('../includes/navigation.ejs') %>
 
 <main>
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: white;">Welcome to ShopHub</h1>
+      <p style="font-size: 1.2rem; color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Discover amazing products across all categories</p>
+      <a href="/products" class="btn btn-primary">Shop Now</a>
+    </div>
+  </div>
+
+  <!-- Category Filter -->
+  <div class="filter-section">
+    <div class="filter-container">
+      <h3 style="color: #333; margin-bottom: 1rem;">Shop by Category</h3>
+      <div class="filter-buttons">
+        <a href="/" class="filter-btn <%= !selectedCategory ? 'active' : '' %>">
+          All Products
+        </a>
+        <% if(categories && categories.length > 0) { %>
+          <% categories.forEach(cat => { %>
+            <a href="/?category=<%= cat %>" class="filter-btn <%= selectedCategory === cat ? 'active' : '' %>">
+              <%= cat %>
+            </a>
+          <% }); %>
+        <% } %>
+      </div>
+    </div>
+  </div>
+
   <% if (products.length > 0) { %>
-    <div class="grid">
+    <div class="products">
       <% for (let product of products) { %>
-        <article class="card product-item">
-          <header class="card__header">
-            <h1 class="product__title"><%= product.title %></h1>
-          </header>
-          <div class="card__image">
-            <img src="/<%= product.imageUrl %>" alt="<%= product.title %>">
-          </div>
-          <div class="card__content">
-            <h2 class="product__price">$<%= product.price %></h2>
-            <p class="product__description"><%= product.description %></p>
-          </div>
-          <div class="card__actions">
-            <%- include('../includes/details.ejs', {product}) %>
-            <% if(isAuthenticated) { %>
-              <%- include('../includes/add-to-cart.ejs', {product}) %>
+        <article class="product-item">
+          <div class="product-item__image">
+            <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+            <% if(!product.inStock) { %>
+              <div class="out-of-stock">Out of Stock</div>
             <% } %>
+          </div>
+          <div class="product-item__content">
+            <div class="product-item__category"><%= product.category %></div>
+            <h2 class="product-item__title"><%= product.title %></h2>
+            <p class="product-item__description"><%= product.description %></p>
+            <% if(product.rating) { %>
+              <div class="product-item__rating">
+                ⭐ <%= product.rating %> (<%= Math.floor(product.rating * 10) %> reviews)
+              </div>
+            <% } %>
+            <div class="product-item__price">$<%= product.price %></div>
+            <div class="product-item__actions">
+              <%- include('../includes/details.ejs', {product}) %>
+              <% if(isAuthenticated && product.inStock) { %>
+                <%- include('../includes/add-to-cart.ejs', {product}) %>
+              <% } else if(!isAuthenticated) { %>
+                <a href="/login" class="btn btn-secondary">View Details</a>
+              <% } %>
+            </div>
           </div>
         </article>
       <% } %>
     </div>
     <%- include('../includes/pagination.ejs') %>
   <% } else { %>
-    <h1>No Products to display...</h1>
+    <div style="text-align: center; padding: 3rem; background: white; border-radius: 12px;">
+      <h1 style="color: #666;">No Products available</h1>
+      <p style="color: #999;">Check back soon for new products!</p>
+    </div>
   <% } %>
 </main>
 
 <%- include('../includes/end.ejs') %>
+

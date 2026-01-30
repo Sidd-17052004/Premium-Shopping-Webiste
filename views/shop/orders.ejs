@@ -8,22 +8,43 @@
 
   <main>
     <% if(orders.length > 0) { %>
-    <ul class="orders">
-      <% orders.forEach(order => { %>
-      <li class="orders__item">
-        <h1>Order - #<%= order._id %> - <a href="/orders/<%= order._id %>">Invoice</a></h1>
-        <ul class="orders__products">
-          <% order.products.forEach(prod => { %>
-          <li class="orders__products-item">
-            <%= prod.product.title %> (<%= prod.quantity %>)
-          </li>
-          <% }); %>
-        </ul>
-      </li>
-      <% }); %>
-    </ul>
+      <h1 style="margin-bottom: 2rem; color: #333;">Your Orders</h1>
+      <div style="max-width: 900px; margin: 0 auto;">
+        <% orders.forEach(order => { %>
+          <div style="background: white; border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid #f0f0f0;">
+              <div>
+                <h2 style="color: #333; margin: 0;">Order #<%= order._id %></h2>
+                <p style="color: #666; margin: 0.5rem 0 0 0;">Placed on <%= new Date(order._id.getTimestamp()).toLocaleDateString() %></p>
+              </div>
+              <a href="/orders/<%= order._id %>" class="btn btn-secondary">Download Invoice</a>
+            </div>
+            <div style="margin-bottom: 1rem;">
+              <h3 style="color: #333; margin-bottom: 1rem;">Items:</h3>
+              <ul style="list-style: none; padding: 0;">
+                <% order.products.forEach(prod => { %>
+                  <li style="display: flex; justify-content: space-between; padding: 0.5rem 0; color: #666;">
+                    <span><%= prod.product.title %> (Qty: <%= prod.quantity %>)</span>
+                    <span style="font-weight: 600;">$<%= (prod.product.price * prod.quantity).toFixed(2) %></span>
+                  </li>
+                <% }); %>
+              </ul>
+            </div>
+            <div style="text-align: right; padding-top: 1rem; border-top: 2px solid #f0f0f0;">
+              <% let total = 0; %>
+              <% order.products.forEach(p => { total += p.product.price * p.quantity; }); %>
+              <p style="color: #999; margin: 0 0 0.5rem 0;">Total:</p>
+              <p style="font-size: 1.5rem; font-weight: 700; color: #ff6b6b; margin: 0;">$<%= total.toFixed(2) %></p>
+            </div>
+          </div>
+        <% }); %>
+      </div>
     <% } else { %>
-    <h1>No orders placed yet...</h1>
+      <div style="text-align: center; padding: 3rem; background: white; border-radius: 12px;">
+        <h1 style="color: #666;">No Orders Yet</h1>
+        <p style="color: #999; margin-bottom: 2rem;">You haven't placed any orders yet. Start shopping to make your first purchase!</p>
+        <a href="/" class="btn btn-primary">Start Shopping</a>
+      </div>
     <% } %>
   </main>
 

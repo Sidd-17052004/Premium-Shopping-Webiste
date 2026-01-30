@@ -5,17 +5,31 @@
 <body>
 <%- include('../includes/navigation.ejs') %>
 
-<main class="centered">
-  <h1><%= product.title %></h1>
-  <hr>
-  <div class="image">
-    <img src="/<%= product.imageUrl %>" alt="<%= product.title %>">
+<main>
+  <div class="product-detail">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+      <div class="product-detail__image">
+        <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+      </div>
+      <div class="product-detail__info">
+        <h1 class="product-detail__title"><%= product.title %></h1>
+        <div class="product-detail__price">$<%= product.price %></div>
+        <p class="product-detail__description"><%= product.description %></p>
+        
+        <% if(isAuthenticated) { %>
+          <div class="product-detail__actions">
+            <%- include('../includes/add-to-cart.ejs') %>
+            <a href="/" class="btn btn-secondary">← Back to Shop</a>
+          </div>
+        <% } else { %>
+          <div style="background: #f0f0f0; padding: 1.5rem; border-radius: 8px; text-align: center;">
+            <p style="color: #666; margin-bottom: 1rem;">Please sign in to add items to your cart</p>
+            <a href="/login" class="btn btn-primary">Sign In</a>
+          </div>
+        <% } %>
+      </div>
+    </div>
   </div>
-  <h2>$<%= product.price %></h2>
-  <p><%= product.description %></p>
-  <% if(isAuthenticated) { %>
-    <%- include('../includes/add-to-cart.ejs') %>
-  <% } %>
 </main>
 
 <%- include('../includes/end.ejs') %>

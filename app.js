@@ -1,6 +1,8 @@
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
+
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
 const fs = require('fs');
 const mongoose = require('mongoose');
 const session = require('express-session');
@@ -12,7 +14,6 @@ const helmet = require('helmet');
 const compression = require('compression');
 const morgan = require('morgan');
 
-const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const authRoutes = require('./routes/auth');
 
@@ -20,7 +21,7 @@ const errorController = require('./controllers/error');
 const User = require('./models/user');
 const { forwardError } = require('./utils');
 
-const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PWD}@cluster0-hcscb.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/shopping_db';
 
 const app = express();
 const store = new MongoDbSessionStore({
@@ -50,21 +51,16 @@ const fileFilter = (req, file, cb) => {
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-const accessLogStream = fs.createWriteStream(
-  path.join(__dirname, 'access.log'),
-  { flags: 'a' }
-);
-
 app.use(helmet());
 app.use(compression());
-app.use(morgan('combined', { stream: accessLogStream }));
+app.use(morgan('combined'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(multer({ storage, fileFilter }).single('image'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(session({
-  secret: 'my secret',
+  secret: process.env.SESSION_SECRET || 'my secret',
   resave: false,
   saveUninitialized: false,
   store
@@ -93,7 +89,6 @@ app.use((req, res, next) => {
     .catch(err => forwardError(err, next));
 });
 
-app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 app.use(authRoutes);
 

@@ -8,30 +8,46 @@
 
 <main>
   <% if(products.length > 0) { %>
+    <h1 style="margin-bottom: 2rem; color: #333;">Shopping Cart</h1>
     <ul class="cart__item-list">
       <% products.forEach((product) => { %>
         <li class="cart__item">
-          <h1><%= product.productId.title %></h1>
-          <h2>Quantity: <%= product.quantity %></h2>
+          <div>
+            <h2 style="color: #333; margin-bottom: 0.5rem;"><%= product.productId.title %></h2>
+            <p style="color: #666;">Price: $<%= product.productId.price %></p>
+          </div>
+          <div class="cart__item-qty">
+            <span>Qty: <%= product.quantity %></span>
+            <span style="color: #ff6b6b; font-weight: bold;">$<%= (product.productId.price * product.quantity).toFixed(2) %></span>
+          </div>
           <form action="cart/delete-item" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <input type="hidden"
                    value="<%= product.productId._id %>"
                    name="productId">
-            <button class="btn danger" type="submit">Delete</button>
+            <button class="btn btn-secondary" type="submit">Remove</button>
           </form>
         </li>
       <% }) %>
     </ul>
-    <div class="centered">
-<!--      <form action="/create-order" method="POST">-->
-<!--        <input type="hidden" name="_csrf" value="<%= csrfToken %>">-->
-<!--        <button type="submit" class="btn">Order Now</button>-->
-<!--      </form>-->
-      <a href="/checkout" class="btn">Order Now</a>
+    
+    <div style="background: white; padding: 2rem; border-radius: 12px; max-width: 900px; margin-left: auto; margin-right: auto; margin-top: 2rem;">
+      <% let total = 0; %>
+      <% products.forEach(p => { total += p.productId.price * p.quantity; }); %>
+      <div style="text-align: right; font-size: 1.8rem; font-weight: 700; color: #ff6b6b; margin-bottom: 2rem;">
+        Total: $<%= total.toFixed(2) %>
+      </div>
+      <div class="cart-actions">
+        <a href="/" class="btn btn-secondary">Continue Shopping</a>
+        <a href="/checkout" class="btn btn-primary">Proceed to Checkout</a>
+      </div>
     </div>
   <% } else { %>
-    <h1>Your Cart is empty...</h1>
+    <div style="text-align: center; padding: 3rem; background: white; border-radius: 12px;">
+      <h1 style="color: #666;">Your Cart is Empty</h1>
+      <p style="color: #999; margin-bottom: 2rem;">Start shopping to add items to your cart</p>
+      <a href="/" class="btn btn-primary">Start Shopping</a>
+    </div>
   <% } %>
 </main>
 

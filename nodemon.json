@@ -1,9 +1,0 @@
-{
-  "env": {
-    "MONGO_USER": "gbloch",
-    "MONGO_PWD": "gaetan.bloch",
-    "MONGO_DB": "shop",
-    "PORT": 3000
-    
-  }
-}

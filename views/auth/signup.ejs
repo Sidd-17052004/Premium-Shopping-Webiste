@@ -3,47 +3,60 @@
 <link rel="stylesheet" href="/css/auth.css">
 </head>
 
-<body>
+<body style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh;">
 <%- include('../includes/navigation.ejs') %>
 
-<main>
-  <div class="centered">
-    <h1>Signup</h1>
+<main style="max-width: 100%; margin: 0; padding: 0;">
+  <div class="auth-container">
+    <div class="auth-card">
+      <h1 class="auth-card__title">Create Account</h1>
+      <p class="auth-card__subtitle">Join us to start shopping</p>
+      
+      <% if (errorMessage) { %>
+        <div style="background: #fee; color: #c33; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; text-align: center;">
+          <%= errorMessage %>
+        </div>
+      <% } %>
+      
+      <form class="signup-form" action="/signup" method="POST" novalidate>
+        <div class="form-control">
+          <label for="email">Email Address</label>
+          <input class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"
+                 type="email"
+                 name="email"
+                 id="email"
+                 value="<%= oldInput.email %>"
+                 placeholder="you@example.com">
+        </div>
+        <div class="form-control">
+          <label for="password">Password</label>
+          <input class="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>"
+                 type="password"
+                 name="password"
+                 id="password"
+                 value="<%= oldInput.password %>"
+                 placeholder="At least 6 characters">
+        </div>
+        <div class="form-control">
+          <label for="confirmPassword">Confirm Password</label>
+          <input class="<%= validationErrors.find(e => e.param === 'confirmPassword')
+                  ? 'invalid'
+                  : '' %>"
+                 type="password"
+                 name="confirmPassword"
+                 id="confirmPassword"
+                 value="<%= oldInput.confirmPassword %>"
+                 placeholder="Confirm your password">
+        </div>
+        
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button class="btn btn-primary" type="submit" style="width: 100%;">Create Account</button>
+      </form>
+      
+      <div class="form-link">
+        Already have an account? <a href="/login">Sign in here</a>
+      </div>
+    </div>
   </div>
-  <% if (errorMessage) { %>
-    <div class="user-message user-message__error"><%= errorMessage %></div>
-  <% } %>
-  <form class="login-form" action="/signup" method="POST" novalidate>
-    <div class="form-control">
-      <label for="email">E-Mail</label>
-      <input class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"
-             type="email"
-             name="email"
-             id="email"
-             value="<%= oldInput.email %>">
-    </div>
-    <div class="form-control">
-      <label for="password">Password</label>
-      <input class="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>"
-             type="password"
-             name="password"
-             id="password"
-             value="<%= oldInput.password %>">
-    </div>
-    <div class="form-control">
-      <label for="confirmPassword">Confirm Password</label>
-      <input class="<%= validationErrors.find(e => e.param === 'confirmPassword')
-              ? 'invalid'
-              : '' %>"
-             type="password"
-             name="confirmPassword"
-             id="confirmPassword"
-             value="<%= oldInput.confirmPassword %>">
-    </div>
-    <div class="centered">
-      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-      <button class="btn" type="submit">Signup</button>
-    </div>
-  </form>
 </main>
 <%- include('../includes/end.ejs') %>

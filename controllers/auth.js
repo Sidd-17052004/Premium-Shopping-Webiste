@@ -7,14 +7,18 @@ const { validationResult } = require('express-validator');
 const User = require('../models/user');
 const { forwardError } = require('../utils');
 
-const transporter = nodemailer.createTransport({
-  host: 'smtp-relay.sendinblue.com',
-  port: 587,
-  auth: {
-    user: 'gaetan.bloch@gmail.com',
-    pass: 'LxEAYtRIpszUafCZ'
-  }
-});
+// Configure email transporter - only if email credentials are provided
+let transporter = null;
+if (process.env.SENDER_EMAIL && process.env.SENDER_EMAIL_PASSWORD && 
+    process.env.SENDER_EMAIL !== 'your-email@gmail.com') {
+  transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.SENDER_EMAIL,
+      pass: process.env.SENDER_EMAIL_PASSWORD
+    }
+  });
+}
 
 const { getErrorMessage } = require('../utils');
 
@@ -126,12 +130,15 @@ exports.postSignup = (req, res, next) => {
     })
     .then(() => {
       res.redirect('/login');
-      return transporter.sendMail({
-        to: req.body.email,
-        from: 'gaetan.bloch@gmail.com',
-        subject: 'Singup Succeeded',
-        html: '<h1>You successfully signed up</h1>'
-      });
+      // Send email only if transporter is configured
+      if (transporter) {
+        return transporter.sendMail({
+          to: req.body.email,
+          from: process.env.SENDER_EMAIL,
+          subject: 'Signup Succeeded',
+          html: '<h1>You successfully signed up!</h1>'
+        });
+      }
     }).catch(err => forwardError(err, next));
 };
 
@@ -171,18 +178,21 @@ exports.postReset = (req, res, next) => {
         return user.save();
       }).then(() => {
       res.redirect('/');
-      return transporter.sendMail({
-        to: req.body.email,
-        from: 'gaetan.bloch@gmail.com',
-        subject: 'Password Reset',
-        html: `
-          <p>You requested a new password reset</p>
-          <p>Click this <a href="http://localhost:3000/reset/${token}">link</a>
-           to set a new password.</p>
-          <br>
-          <i>This link will be active for only one hour.</i>
-        `
-      });
+      // Send email only if transporter is configured
+      if (transporter) {
+        return transporter.sendMail({
+          to: req.body.email,
+          from: process.env.SENDER_EMAIL,
+          subject: 'Password Reset',
+          html: `
+            <p>You requested a password reset</p>
+            <p>Click this <a href="http://localhost:3000/reset/${token}">link</a>
+             to set a new password.</p>
+            <br>
+            <i>This link will be active for only one hour.</i>
+          `
+        });
+      }
     }).catch(err => forwardError(err, next));
   });
 };

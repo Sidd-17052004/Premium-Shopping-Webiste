@@ -3,42 +3,53 @@
 <link rel="stylesheet" href="/css/forms.css">
 </head>
 
-<body>
+<body style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh;">
 <%- include('../includes/navigation.ejs') %>
 
-<main>
-  <div class="centered">
-    <h1>Login</h1>
-  </div>
-  <% if (errorMessage) { %>
-    <div class="user-message user-message__error"><%= errorMessage %></div>
-  <% } %>
-  <form class="login-form" method="POST" action="/login" novalidate>
-    <div class="form-control">
-      <label for="email">E-Mail</label>
-      <input class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"
-             type="email"
-             name="email"
-             id="email"
-             value="<%= oldInput.email %>">
-    </div>
-    <div class="form-control">
-      <label for="password">Password</label>
-      <input class="<%= validationErrors.find(e => e.param ==='password') ? 'invalid' : '' %>"
-             type="password"
-             name="password"
-             id="password"
-             value="<%= oldInput.password %>">
-      <div class="align-right">
-        <a class="reset-password" href="/reset">Forgot Password ?</a>
+<main style="max-width: 100%; margin: 0; padding: 0;">
+  <div class="auth-container">
+    <div class="auth-card">
+      <h1 class="auth-card__title">Welcome Back</h1>
+      <p class="auth-card__subtitle">Sign in to continue shopping</p>
+      
+      <% if (errorMessage) { %>
+        <div style="background: #fee; color: #c33; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; text-align: center;">
+          <%= errorMessage %>
+        </div>
+      <% } %>
+      
+      <form class="login-form" method="POST" action="/login" novalidate>
+        <div class="form-control">
+          <label for="email">Email Address</label>
+          <input class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"
+                 type="email"
+                 name="email"
+                 id="email"
+                 value="<%= oldInput.email %>"
+                 placeholder="you@example.com">
+        </div>
+        <div class="form-control">
+          <label for="password">Password</label>
+          <input class="<%= validationErrors.find(e => e.param ==='password') ? 'invalid' : '' %>"
+                 type="password"
+                 name="password"
+                 id="password"
+                 value="<%= oldInput.password %>"
+                 placeholder="Enter your password">
+        </div>
+
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button class="btn btn-primary" type="submit" style="width: 100%;">Sign In</button>
+      </form>
+      
+      <div class="form-link">
+        Don't have an account? <a href="/signup">Create one here</a>
       </div>
     </div>
+  </div>
+</main>
 
-    <div class="centered">
-      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-      <button class="btn" type="submit">Login</button>
-    </div>
-  </form>
+<%- include('../includes/end.ejs') %>
 
 </main>
 

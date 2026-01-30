@@ -1,0 +1,175 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+<%- include('../includes/navigation.ejs') %>
+
+<main style="padding: 2rem;">
+  <!-- Hero Section -->
+  <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 4rem 2rem; border-radius: 20px; text-align: center; margin-bottom: 3rem;">
+    <h1 style="font-size: 3rem; margin-bottom: 1rem; color: white;">About ShopHub 🛍️</h1>
+    <p style="font-size: 1.3rem; opacity: 0.95; max-width: 800px; margin: 0 auto;">Your one-stop destination for quality products across all categories</p>
+  </div>
+
+  <!-- Main Content -->
+  <div style="max-width: 1200px; margin: 0 auto;">
+    
+    <!-- Mission Section -->
+    <div style="background: white; padding: 3rem; border-radius: 16px; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+      <h2 style="color: #667eea; font-size: 2rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+        🎯 Our Mission
+      </h2>
+      <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 1rem;">
+        At <strong>ShopHub</strong>, we're dedicated to bringing you the best shopping experience with a curated selection of high-quality products. 
+        Whether you're looking for the latest electronics, trendy fashion items, home essentials, sports equipment, beauty products, or educational books, 
+        we've got you covered!
+      </p>
+      <p style="font-size: 1.1rem; line-height: 1.8; color: #555;">
+        Our mission is to make online shopping easy, secure, and enjoyable for everyone. We believe in providing exceptional value, 
+        outstanding customer service, and a seamless shopping experience from browsing to checkout.
+      </p>
+    </div>
+
+    <!-- Features Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+      
+      <!-- Feature 1 -->
+      <div style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">🚀</div>
+        <h3 style="color: #667eea; font-size: 1.5rem; margin-bottom: 1rem;">Fast Delivery</h3>
+        <p style="color: #666; line-height: 1.6;">
+          Quick and reliable shipping to get your products to you as fast as possible. Track your orders in real-time!
+        </p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">🔒</div>
+        <h3 style="color: #667eea; font-size: 1.5rem; margin-bottom: 1rem;">Secure Payments</h3>
+        <p style="color: #666; line-height: 1.6;">
+          Shop with confidence! Our payment system is powered by Stripe for secure and encrypted transactions.
+        </p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">⭐</div>
+        <h3 style="color: #667eea; font-size: 1.5rem; margin-bottom: 1rem;">Quality Products</h3>
+        <p style="color: #666; line-height: 1.6;">
+          Every product is carefully selected and rated by our community. Only the best make it to our catalog!
+        </p>
+      </div>
+
+      <!-- Feature 4 -->
+      <div style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">💰</div>
+        <h3 style="color: #667eea; font-size: 1.5rem; margin-bottom: 1rem;">Best Prices</h3>
+        <p style="color: #666; line-height: 1.6;">
+          Competitive pricing across all categories. Get the best value for your money with our amazing deals!
+        </p>
+      </div>
+
+      <!-- Feature 5 -->
+      <div style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">🎨</div>
+        <h3 style="color: #667eea; font-size: 1.5rem; margin-bottom: 1rem;">Wide Selection</h3>
+        <p style="color: #666; line-height: 1.6;">
+          Browse through 6 diverse categories with hundreds of products. From tech to fashion, we have it all!
+        </p>
+      </div>
+
+      <!-- Feature 6 -->
+      <div style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">💬</div>
+        <h3 style="color: #667eea; font-size: 1.5rem; margin-bottom: 1rem;">24/7 Support</h3>
+        <p style="color: #666; line-height: 1.6;">
+          Our customer support team is always ready to help. Reach out anytime for assistance with your orders!
+        </p>
+      </div>
+    </div>
+
+    <!-- Categories Section -->
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 3rem; border-radius: 16px; margin-bottom: 3rem; color: white;">
+      <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center; color: white;">
+        🏪 Shop By Category
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; text-align: center;">
+        <div>
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📱</div>
+          <div style="font-weight: 600;">Electronics</div>
+        </div>
+        <div>
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">👕</div>
+          <div style="font-weight: 600;">Fashion</div>
+        </div>
+        <div>
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">⚽</div>
+          <div style="font-weight: 600;">Sports</div>
+        </div>
+        <div>
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">💄</div>
+          <div style="font-weight: 600;">Beauty</div>
+        </div>
+        <div>
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📚</div>
+          <div style="font-weight: 600;">Books</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How It Works -->
+    <div style="background: white; padding: 3rem; border-radius: 16px; margin-bottom: 3rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+      <h2 style="color: #667eea; font-size: 2rem; margin-bottom: 2rem; text-align: center;">
+        🔄 How It Works
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+        <div style="text-align: center;">
+          <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem; font-weight: bold;">1</div>
+          <h4 style="color: #333; margin-bottom: 0.5rem;">Browse Products</h4>
+          <p style="color: #666; font-size: 0.95rem;">Explore our catalog and find what you need</p>
+        </div>
+        <div style="text-align: center;">
+          <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem; font-weight: bold;">2</div>
+          <h4 style="color: #333; margin-bottom: 0.5rem;">Add to Cart</h4>
+          <p style="color: #666; font-size: 0.95rem;">Select your favorite items and quantities</p>
+        </div>
+        <div style="text-align: center;">
+          <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem; font-weight: bold;">3</div>
+          <h4 style="color: #333; margin-bottom: 0.5rem;">Secure Checkout</h4>
+          <p style="color: #666; font-size: 0.95rem;">Pay safely with Stripe payment gateway</p>
+        </div>
+        <div style="text-align: center;">
+          <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem; font-weight: bold;">4</div>
+          <h4 style="color: #333; margin-bottom: 0.5rem;">Get Delivered</h4>
+          <p style="color: #666; font-size: 0.95rem;">Receive your order at your doorstep</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div style="background: linear-gradient(135deg, #ff6b6b, #ee5a6f); color: white; padding: 3rem; border-radius: 16px; text-align: center; margin-bottom: 3rem;">
+      <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: white;">Ready to Start Shopping? 🎉</h2>
+      <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95;">Join thousands of happy customers and discover amazing products today!</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/products" class="btn" style="background: white; color: #ff6b6b; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; display: inline-block;">Browse Products</a>
+        <% if(!isAuthenticated) { %>
+          <a href="/signup" class="btn" style="background: rgba(255,255,255,0.2); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; display: inline-block; border: 2px solid white;">Sign Up Free</a>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Contact Info -->
+    <div style="text-align: center; padding: 2rem; color: #666;">
+      <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">
+        📧 Questions? Reach out to us anytime!
+      </p>
+      <p style="font-size: 0.95rem; color: #999;">
+        Made with ❤️ by the ShopHub Team
+      </p>
+    </div>
+
+  </div>
+</main>
+
+<%- include('../includes/end.ejs') %>
