@@ -99,22 +99,19 @@ Use Stripe test card: `4242 4242 4242 4242` (any future date, any CVC)
 └── app.js           # Express app configuration
 ```
 
-## 📸 Screenshots
-
-*Add screenshots of your deployed application here*
 
 ## 👨‍💻 Author
 
 **Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your Name](https://linkedin.com/in/yourprofile)
-- Email: your.email@example.com
+- GitHub: [@Sidd-17052004](https://github.com/Sidd-17052004)
+- LinkedIn: [Siddhesh Katkade](https://www.linkedin.com/in/siddhesh-katkade-tech-coder-ai/)
+- Email: srkatkade@gmail.com
 
 ---
 
 <div align="center">
 
-**Built with Node.js, Express, MongoDB & Stripe** • [⭐ Star this repo](https://github.com/yourusername/premium-shopping-website)
+**Built with Node.js, Express, MongoDB & Stripe** • [⭐ Star this repo](https://github.com/Sidd-17052004/premium-shopping-website)
 
 </div>
 
