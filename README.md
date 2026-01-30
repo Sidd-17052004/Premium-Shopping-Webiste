@@ -104,7 +104,7 @@ Use Stripe test card: `4242 4242 4242 4242` (any future date, any CVC)
 
 **Your Name**
 - GitHub: [@Sidd-17052004](https://github.com/Sidd-17052004)
-- LinkedIn: [Sidhdesh Katkade]([https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/siddhesh-katkade-tech-coder-ai/))
+- LinkedIn: [Siddhesh Katkade](https://www.linkedin.com/in/siddhesh-katkade-tech-coder-ai/)
 - Email: srkatkade@gmail.com
 
 ---
