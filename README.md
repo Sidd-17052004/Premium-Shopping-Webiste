@@ -10,8 +10,6 @@
 
 **A modern, full-stack e-commerce platform with secure payments and admin management**
 
-[Live Demo]([#](https://premium-shopping-webiste.vercel.app/))
-
 </div>
 
 ---
